@@ -22,10 +22,10 @@ func main() {
 		os.Exit(1)
 	}
 	//fmt.Printf("Loaded config with %d people\n", len(cfg.People))
-	asciiArt.NewColorFigure("Merry", "", "green", true).Print()
-	time.Sleep(time.Second)
-	asciiArt.NewColorFigure("Christmas", "", "red", true).Print()
-	time.Sleep(time.Second)
+	asciiArt.NewColorFigure("Merry", "basic", "green", true).Print()
+	time.Sleep(2 * time.Second)
+	asciiArt.NewColorFigure("Christmas", "basic", "red", true).Print()
+	time.Sleep(2 * time.Second)
 	fmt.Println(`
 
              /\
@@ -48,15 +48,12 @@ func main() {
    /~~~~~~~~~~~~~~~~~~~~\
   /  ()  ()  ()  ()  ()  \
   /*&*&*&*&*&*&*&*&*&*&*&\
- /                        \
-/,.,.,.,.,.,.,.,.,.,.,.,.,.\
            |   |
           |-----|
           \_____/
-
 	`)
 
-	time.Sleep(2 * time.Second)
+	time.Sleep(3 * time.Second)
 	fmt.Print("\n\n\n")
 	fmt.Print(spacer)
 	time.Sleep(2 * time.Second)
