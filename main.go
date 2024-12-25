@@ -54,16 +54,18 @@ func main() {
 	`)
 
 	time.Sleep(3 * time.Second)
-	fmt.Print("\n\n\n")
   reader := bufio.NewReader(os.Stdin)
   _, err = reader.ReadString('\n')
   if err != nil {
     fmt.Printf("Error while reading input: %s\n", err)
     os.Exit(2)
   }
+	fmt.Print("\n\n\n")
 	fmt.Print(spacer)
 
+  //roundNumber := 0
 	for {
+    //roundNumber++
 		peopleRemaining := make([]config.Person, len(cfg.People))
 		copy(peopleRemaining, cfg.People)
 		loopCount := len(cfg.People)
@@ -99,6 +101,12 @@ func main() {
 			fmt.Print(spacer)
 			time.Sleep(2 * time.Second)
 			peopleRemaining = removePerson(peopleRemaining, person)
+      /*
+      fmt.Printf("Remaining for round %d:\n", roundNumber)
+      for _, remainingPerson := range peopleRemaining {
+        fmt.Println(remainingPerson.Name)
+      }
+      */
 		}
 	}
 }

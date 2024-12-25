@@ -1,0 +1,4 @@
+- color words in descriptors show in that color
+- text to speech
+- loading animation
+- common descriptors
