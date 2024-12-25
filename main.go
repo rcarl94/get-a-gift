@@ -54,34 +54,34 @@ func main() {
 	`)
 
 	time.Sleep(3 * time.Second)
-  reader := bufio.NewReader(os.Stdin)
-  _, err = reader.ReadString('\n')
-  if err != nil {
-    fmt.Printf("Error while reading input: %s\n", err)
-    os.Exit(2)
-  }
+	reader := bufio.NewReader(os.Stdin)
+	_, err = reader.ReadString('\n')
+	if err != nil {
+		fmt.Printf("Error while reading input: %s\n", err)
+		os.Exit(2)
+	}
 	fmt.Print("\n\n\n")
 	fmt.Print(spacer)
 
-  //roundNumber := 0
+	//roundNumber := 0
 	for {
-    //roundNumber++
+		//roundNumber++
 		peopleRemaining := make([]config.Person, len(cfg.People))
 		copy(peopleRemaining, cfg.People)
 		loopCount := len(cfg.People)
 		for i := 0; i < loopCount; i++ {
 			randomInt := rand.Intn(len(peopleRemaining))
-      var person config.Person
-      if i == 0 { // don't make people angry
-        for {
-          person = peopleRemaining[randomInt]
-          if person.Name != "Ryan" {
-            break
-          }
-        }
-      } else {
-        person = peopleRemaining[randomInt]
-      }
+			var person config.Person
+			if i == 0 { // don't make people angry
+				for {
+					person = peopleRemaining[randomInt]
+					if person.Name != "Ryan" {
+						break
+					}
+				}
+			} else {
+				person = peopleRemaining[randomInt]
+			}
 			anotherRandomInt := rand.Intn(len(person.Descriptors))
 			fmt.Printf("%s, open a gift that's %s\n", colors.Red(person.Name), colors.Green(person.Descriptors[anotherRandomInt]))
 			reader := bufio.NewReader(os.Stdin)
@@ -101,12 +101,12 @@ func main() {
 			fmt.Print(spacer)
 			time.Sleep(2 * time.Second)
 			peopleRemaining = removePerson(peopleRemaining, person)
-      /*
-      fmt.Printf("Remaining for round %d:\n", roundNumber)
-      for _, remainingPerson := range peopleRemaining {
-        fmt.Println(remainingPerson.Name)
-      }
-      */
+			/*
+				fmt.Printf("Remaining for round %d:\n", roundNumber)
+				for _, remainingPerson := range peopleRemaining {
+					fmt.Println(remainingPerson.Name)
+				}
+			*/
 		}
 	}
 }
