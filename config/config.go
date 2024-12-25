@@ -9,7 +9,7 @@ import (
 
 type Person struct {
 	Name        string   `yaml:"name"`
-	Descriptors []string `yaml:"descriptors"`
+	Descriptors []string `yaml:"gift_descriptors"`
 }
 
 type GiftGrabConfig struct {

@@ -13,6 +13,8 @@ import (
 	"github.com/rcarl94/gift-grab/config"
 )
 
+const spacer = "\n🎁 🎁 🎁 🎁 🎁 🎁 🎁 🎁 🎁 🎁 🎁 🎁 🎁 🎁 🎁 🎁 🎁 🎁 🎁\n\n"
+
 func main() {
 	cfg, err := config.LoadConfig()
 	if err != nil {
@@ -21,10 +23,43 @@ func main() {
 	}
 	//fmt.Printf("Loaded config with %d people\n", len(cfg.People))
 	asciiArt.NewColorFigure("Merry", "", "green", true).Print()
-	time.Sleep(2 * time.Second)
+	time.Sleep(time.Second)
 	asciiArt.NewColorFigure("Christmas", "", "red", true).Print()
+	time.Sleep(time.Second)
+	fmt.Println(`
+
+             /\
+            <  >
+             \/
+             /\
+            /  \
+           /++++\
+          /  ()  \
+          /      \
+         /~-~-~-~-\
+        /  ()  ()  \
+        /          \
+       /*&*&*&*&*&*&\
+      /  ()  ()  ()  \
+      /              \
+     /++++++++++++++++\
+    /  ()  ()  ()  ()  \
+    /                  \
+   /~~~~~~~~~~~~~~~~~~~~\
+  /  ()  ()  ()  ()  ()  \
+  /*&*&*&*&*&*&*&*&*&*&*&\
+ /                        \
+/,.,.,.,.,.,.,.,.,.,.,.,.,.\
+           |   |
+          |-----|
+          \_____/
+
+	`)
+
 	time.Sleep(2 * time.Second)
-	fmt.Printf("\n\n\n")
+	fmt.Print("\n\n\n")
+	fmt.Print(spacer)
+	time.Sleep(2 * time.Second)
 
 	for {
 		peopleRemaining := make([]config.Person, len(cfg.People))
@@ -49,7 +84,7 @@ func main() {
 					fmt.Printf("How about one that's %s?\n", colors.Green(person.Descriptors[anotherRandomInt]))
 				}
 			}
-			fmt.Println("Moving on...\n")
+			fmt.Print(spacer)
 			time.Sleep(2 * time.Second)
 			peopleRemaining = removePerson(peopleRemaining, person)
 		}
