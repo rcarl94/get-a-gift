@@ -27,7 +27,6 @@ func main() {
 	asciiArt.NewColorFigure("Christmas", "basic", "red", true).Print()
 	time.Sleep(2 * time.Second)
 	fmt.Println(`
-
              /\
             <  >
              \/
@@ -48,23 +47,39 @@ func main() {
    /~~~~~~~~~~~~~~~~~~~~\
   /  ()  ()  ()  ()  ()  \
   /*&*&*&*&*&*&*&*&*&*&*&\
-           |   |
+ /_________     __________\ 
+           |---|
           |-----|
           \_____/
 	`)
 
 	time.Sleep(3 * time.Second)
 	fmt.Print("\n\n\n")
+  reader := bufio.NewReader(os.Stdin)
+  _, err = reader.ReadString('\n')
+  if err != nil {
+    fmt.Printf("Error while reading input: %s\n", err)
+    os.Exit(2)
+  }
 	fmt.Print(spacer)
-	time.Sleep(2 * time.Second)
 
 	for {
 		peopleRemaining := make([]config.Person, len(cfg.People))
 		copy(peopleRemaining, cfg.People)
 		loopCount := len(cfg.People)
-		for range loopCount {
+		for i := 0; i < loopCount; i++ {
 			randomInt := rand.Intn(len(peopleRemaining))
-			person := peopleRemaining[randomInt]
+      var person config.Person
+      if i == 0 { // don't make people angry
+        for {
+          person = peopleRemaining[randomInt]
+          if person.Name != "Ryan" {
+            break
+          }
+        }
+      } else {
+        person = peopleRemaining[randomInt]
+      }
 			anotherRandomInt := rand.Intn(len(person.Descriptors))
 			fmt.Printf("%s, open a gift that's %s\n", colors.Red(person.Name), colors.Green(person.Descriptors[anotherRandomInt]))
 			reader := bufio.NewReader(os.Stdin)
